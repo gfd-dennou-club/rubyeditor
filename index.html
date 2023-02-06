@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>mruby/c エディタ</title>
+		<link rel="shortcut icon" href="../images/favicon.ico">
+		<link rel="apple-touch-icon" href="../images/favicon_180.png">
+		<link rel="icon" href="../images/favicon_192.png">
+	</head>
+	<body>
+		<div id="editor-div" style="height: 500px; width: 500px">ソースAce</div>
+		
+		<!-- <script src="src/ace.js" type="text/javascript" charset="utf-8"></script> -->
+		<script src="src/ace.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			window.onload = function() {
+			var editor = ace.edit("editor-div");
+			};
+		</script>
+	</body>
+</html>
