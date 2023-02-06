@@ -1,22 +1,38 @@
 <!DOCTYPE html>
-<html lang="ja">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>mruby/c エディタ</title>
-		<link rel="shortcut icon" href="../images/favicon.ico">
-		<link rel="apple-touch-icon" href="../images/favicon_180.png">
-		<link rel="icon" href="../images/favicon_192.png">
-	</head>
-	<body>
-		<div id="editor-div" style="height: 500px; width: 500px">ソースAce</div>
-		
-		<!-- <script src="src/ace.js" type="text/javascript" charset="utf-8"></script> -->
-		<script src="src/ace.js" type="text/javascript" charset="utf-8"></script>
-		<script>
-			window.onload = function() {
-			var editor = ace.edit("editor-div");
-			};
-		</script>
-	</body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Editor</title>
+  <style type="text/css" media="screen">
+    body {
+        overflow: hidden;
+    }
+
+    #editor {
+        margin: 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+  </style>
+</head>
+<body>
+
+<pre id="editor">num = 0
+
+10.times do |i|
+    puts i + "times"
+end</pre>
+
+<script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/twilight");
+    editor.session.setMode("ace/mode/ruby");
+</script>
+
+</body>
 </html>
