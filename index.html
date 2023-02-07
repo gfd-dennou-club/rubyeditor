@@ -8,12 +8,24 @@
   <link rel="shortcut icon" href="../images/favicon.ico">
   <link rel="apple-touch-icon" href="../images/favicon_180.png">
   <link rel="icon" href="../images/favicon_192.png">
+  <link href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" rel="stylesheet">
   <style type="text/css" media="screen">
-    body {
+    html {
+		font-size: 55%;
+	}
+	body {
+		margin: 0;
         overflow: hidden;
     }
-
-    #editor {
+	
+	.editor {
+		height: calc(100vh - 80px);
+		width: 100vh;
+		margin: 0;
+	}
+	#editor {
+		height: calc(100vh - 80px);
+		width: 100%;
         margin: 0;
         position: absolute;
         top: 0;
@@ -21,16 +33,82 @@
         left: 0;
         right: 0;
     }
+	
+	.buttons {
+		height: 80px;
+		width: 100%;
+	}
+	.btn-wrap {
+		width: 90%;
+		margin: 1.6rem;
+		margin-left: 4rem;
+	}
+button.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+  position: relative;
+  display: inline-block;
+  margin-right: 1.6rem;
+  margin-bottom: 1.6rem;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+button.btn-border {
+  border: 2px solid #000;
+  border-radius: 0;
+  background: #3CDAFF;
+}
+button.btn-border:hover {
+  color: #fff;
+  background: #6BE3FF;
+}
+
+button.btn-icon {
+  font-size: 2rem;
+  position: relative;
+  padding: 1.5rem 3rem 1.5rem 2rem;
+}
+button.btn-icon i.fa-solid {
+  margin-right: 1rem;
+}
   </style>
 </head>
 <body>
-
+  <div class="container">
+    <div class="editor">
 <pre id="editor">num = 0
 
 10.times do |i|
     puts i + "times"
 end
 </pre>
+    </div>
+	<div class="buttons">
+	  <div class="btn-wrap">
+	    <button class="btn btn-border btn-icon">
+	      <i class="fa-solid fa-wrench"></i>
+	      コンパイル
+	    </button>
+	    <button class="btn btn-border btn-icon">
+	      <i class="fa-solid fa-download"></i>
+	      保存
+	    </button>
+	    <button class="btn btn-border btn-icon">
+	      <i class="fa-solid fa-upload"></i>
+	      読み込み
+	    </button>
+	  </div>
+	</div>
+  </div>
 
 <script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
