@@ -94,7 +94,7 @@ end
     </div>
 	<div class="buttons">
 	  <div class="btn-wrap">
-	    <button class="btn btn-border btn-icon">
+	    <button class="btn btn-border btn-icon" onclick="compileBtn();">
 	      <i class="fa-solid fa-wrench"></i>
 	      コンパイル
 	    </button>
@@ -115,6 +115,20 @@ end
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
     editor.session.setMode("ace/mode/ruby");
+	
+	function compileBtn() {
+		var ele = document.createElement('form');
+		ele.action = 'https://www.epi.it.matsue-ct.jp/j1819/convert/upload.php';
+		ele.method = 'post';
+		ele.setAttribute('target', '_blank');
+		var q = document.createElement('textarea');
+		q.value = editor.getSession().getValue();
+		q.name = 'master_code';
+		ele.appendChild(q);
+		document.body.appendChild(ele);
+		ele.submit();
+		ele.remove();
+	}
 </script>
 
 </body>
