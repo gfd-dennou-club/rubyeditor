@@ -8,12 +8,27 @@
   <link rel="shortcut icon" href="../images/favicon.ico">
   <link rel="apple-touch-icon" href="../images/favicon_180.png">
   <link rel="icon" href="../images/favicon_192.png">
+  <link href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" rel="stylesheet">
   <style type="text/css" media="screen">
-    body {
+    html {
+		font-size: 55%;
+	}
+	* {
+		margin: 0;
+	}
+	body {
+		margin: 0;
         overflow: hidden;
     }
-
-    #editor {
+	
+	.editor {
+		height: calc(100vh - 80px);
+		width: 100vh;
+		margin: 0;
+	}
+	#editor {
+		height: calc(100vh - 80px);
+		width: 100%;
         margin: 0;
         position: absolute;
         top: 0;
@@ -21,22 +36,142 @@
         left: 0;
         right: 0;
     }
+	
+	.buttons {
+		height: 80px;
+		width: 100%;
+	}
+	.btn-wrap {
+		width: 90%;
+		margin: 1.6rem;
+		margin-left: 4rem;
+	}
+button.btn, #load-button {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+  position: relative;
+  display: inline-block;
+  margin-right: 1.6rem;
+  margin-bottom: 1.6rem;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+button.btn-border, #load-button.btn-border {
+  border: 2px solid #000;
+  border-radius: 0;
+  background: #3CDAFF;
+}
+button.btn-border:hover, #load-button.btn-border:hover {
+  color: #fff;
+  background: #6BE3FF;
+}
+
+button.btn-icon, #load-button.btn-icon {
+  font-size: 2rem;
+  position: relative;
+  padding: 1.5rem 3rem 1.5rem 2rem;
+}
+button.btn-icon i.fa-solid {
+  margin-right: 1rem;
+}
+#load-button.btn-icon i.fa-solid {
+  margin-right: 1rem;
+}
+
+#load-input{
+    display: none;
+}
   </style>
 </head>
 <body>
-
+  <div class="container">
+    <div class="editor">
 <pre id="editor">num = 0
 
 10.times do |i|
     puts i + "times"
 end
 </pre>
+    </div>
+	<div class="buttons">
+	  <div class="btn-wrap">
+	    <button class="btn btn-border btn-icon" onclick="compileBtn();">
+	      <i class="fa-solid fa-wrench"></i>
+	      コンパイル
+	    </button>
+	    <button class="btn btn-border btn-icon" onclick="saveBtn();">
+	      <i class="fa-solid fa-download"></i>
+	      保存
+	    </button>
+		<div id="load-button" class="btn btn-border btn-icon" onclick="loadBtn();">
+		  <i class="fa-solid fa-upload"></i>
+	      読み込み
+		</div>
+		<input type="file" id="load-input"/>
+	  </div>
+	</div>
+  </div>
 
 <script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
     editor.session.setMode("ace/mode/ruby");
+	
+	function compileBtn() {
+		var ele = document.createElement('form');
+		ele.action = 'https://www.epi.it.matsue-ct.jp/j1819/convert/upload.php';
+		ele.method = 'post';
+		ele.setAttribute('target', '_blank');
+		var q = document.createElement('textarea');
+		q.value = editor.getSession().getValue();
+		q.name = 'master_code';
+		ele.appendChild(q);
+		document.body.appendChild(ele);
+		ele.submit();
+		ele.remove();
+	}
+	
+	function saveBtn() {
+		const downloadLink = document.createElement('a');
+		document.body.appendChild(downloadLink);
+		downloadLink.href = "#";
+		downloadLink.download = 'source.rb';
+
+		const content = editor.getSession().getValue();
+		var blob = new Blob([content], {"type": "text/plain"});
+		if (window.navigator.msSaveBlob) {
+			window.navigator.msSaveBlob(blob, "source.rb");
+			window.navigator.msSaveOrOpenBlob(blob, "source.rb");
+		} else {
+			downloadLink.href = window.URL.createObjectURL(blob);
+		}
+		
+		downloadLink.click();
+		document.body.removeChild(downloadLink);
+	}
+	
+	function loadBtn() {
+		document.getElementById('load-input').click();
+		
+		document.getElementById("load-input").addEventListener('change', function(e){
+			var file_reader = new FileReader();
+			file_reader.addEventListener('load', function(e) {
+				editor.getSession().setValue(e.target.result);
+				console.log("loaded.");
+			});
+			file_reader.readAsText(e.target.files[0]);
+		});
+	}
 </script>
 
 </body>
