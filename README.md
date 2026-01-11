@@ -2,7 +2,7 @@
 
 Aceエディタを使ったRubyのエディタ．クリック 1 回で kaniwriter と連携してマイコンへプログラムを書き込むことができる．
 
-## Site
+## 動作検証サイト
 
 https://ceres.epi.it.matsue-ct.ac.jp/ruby/
 
