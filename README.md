@@ -1,8 +1,10 @@
 # rubyeditor
 
+Aceエディタを使ったRubyのエディタ．クリック 1 回で kaniwriter と連携してマイコンへプログラムを書き込むことができる．
+
+https://ceres.epi.it.matsue-ct.ac.jp/ruby/
 
 
-https://github.com/gfd-dennou-club/rubyeditor/blob/main/README.md
 ## demonstration
 
 松江高専マイコン基板にて L チカを行う例．
