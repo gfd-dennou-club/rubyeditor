@@ -13,7 +13,3 @@ https://ceres.epi.it.matsue-ct.ac.jp/ruby/
 
 https://github.com/user-attachments/assets/1a1e2ede-569f-4f56-9de6-f228c04d5e94
 
-## main Contributors
-
-@Tanabe-Yumi
-@sugiymki
